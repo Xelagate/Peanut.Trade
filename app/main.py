@@ -4,7 +4,7 @@ from app.api.rates import router as rates_router
 
 app = FastAPI()
 
-# Подключаем роутеры
+# Підключаємо роутери
 app.include_router(estimate_router, prefix="/estimate")
 app.include_router(rates_router, prefix="/rates")
 
