@@ -6,16 +6,12 @@ from app.services.raydium import get_raydium_rate
 
 router = APIRouter()
 
-@router.get("/", tags=["Rates"])
+@router.get("/")
 async def get_rates(baseCurrency: str, quoteCurrency: str):
-    rates = {
-        "Binance": await get_binance_rate(baseCurrency, quoteCurrency),
-        "KuCoin": await get_kucoin_rate(baseCurrency, quoteCurrency),
-        "Uniswap": await get_uniswap_rate(baseCurrency, quoteCurrency),
-        "Raydium": await get_raydium_rate(baseCurrency, quoteCurrency),
-    }
-
-    # Удаляем биржи, которые вернули None
-    rates = [{"exchangeName": name, "rate": rate} for name, rate in rates.items() if rate is not None]
-
+    rates = [
+        {"exchangeName": "Binance", "rate": await get_binance_rate(baseCurrency, quoteCurrency)},
+        {"exchangeName": "KuCoin", "rate": await get_kucoin_rate(baseCurrency, quoteCurrency)},
+        {"exchangeName": "Uniswap", "rate": await get_uniswap_rate(baseCurrency, quoteCurrency)},
+        {"exchangeName": "Raydium", "rate": await get_raydium_rate(baseCurrency, quoteCurrency)},
+    ]
     return rates
