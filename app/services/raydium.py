@@ -1,20 +1,13 @@
-import os
-import json
+import asyncio
+import logging
 
+logger = logging.getLogger(__name__)
 
-# Заглушка для получения курса на Raydium
-# Представь, что это вместо настоящей функции
-# пока вы не реализуете логику доступа к Solana/Raydium
 async def get_raydium_rate(base_currency: str, quote_currency: str) -> float:
     """
-    Это просто заглушка, которая всегда
-    возвращает одно значение (1.2345).
-
-    По-настоящему здесь должен быть код, который:
-    1. Подключается к Solana.
-    2. Находит пул Raydium.
-    3. Вычисляет цену (rate) между токенами base_currency и quote_currency.
+    Заглушка для Raydium. Поки не реалізовано отримання даних.
+    Повертає 0.0.
     """
-
-    print("Вызвана заглушка get_raydium_rate — возвращаем фиксированное число.")
-    return 1.2345
+    logger.info(f"Raydium: не реалізовано для пари {base_currency}/{quote_currency}. Повертаємо 0.0")
+    await asyncio.sleep(0)
+    return 0.0
